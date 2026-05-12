@@ -155,7 +155,7 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
             Button b = findViewById(listaIdsButtons.get(j));
             b.setEnabled(true);
         }
-    }//____________________________________________↓ METODO CHECA DE TERMINOU ↓_______________________________________________________________________________________________________________________
+    }//____________________________________________↓ METODO CHECA SE TERMINOU ↓_______________________________________________________________________________________________________________________
 
        public void checaSeTerminou(){
         boolean verifica = false;
@@ -269,7 +269,7 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
 
 
 
-// texto.setText(b.getText().toString());    //so pra ver se a ação de toque esta funcionando
+      // texto.setText(b.getText().toString());    //so pra ver se a ação de toque esta funcionando
       //  texto.setText(sorteiaPalavra()); //sortear a palavra *temporariamente*
 
 
