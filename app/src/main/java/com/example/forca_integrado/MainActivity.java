@@ -12,6 +12,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+
+                    //--> extends AppCompatActivity <-- significa que a classe te uma tela mobile
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button b, b1;
