@@ -133,6 +133,8 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
             b.setOnClickListener(this);
         }
 
+        inicializaJogo();
+
     } //_________________________________↓ FIM DO METODO onCreate ↓____________________________________________________________________________________________________________
 
 

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 //BD --> banco de dados abreviado
 public class BD extends SQLiteOpenHelper {
+    private String palavra, categoria;
     private static final int DATABASE_VERSION = 1;  //estou declarando a versao do meu database que sera 1
     private static final String DATABASE_NAME = "banco.bd"; //Estou declarando que o nome do meu banco de dados se chama "banco.db"
 
@@ -34,14 +35,14 @@ public class BD extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase(); //Read --> poder de leitura
         Cursor cursor = db.query("tabelaPalavra", null, null, null, null, null, null);
         while (cursor.moveToNext()){ //enquanto ele poder mover para o procimo o while vai ficar rodando
-            String palavra = cursor.getString(cursor.getColumnIndexOrThrow("palavra"));
-            String categoria = cursor.getString(cursor.getColumnIndexOrThrow("categoria"));
-            Palavra p = new Palavra();
-            p.setPalavraDigitada(palavra);
-            p.setCategoria(categoria);
+             palavra = cursor.getString(cursor.getColumnIndexOrThrow("palavra"));
+             categoria = cursor.getString(cursor.getColumnIndexOrThrow("categoria"));
+            Palavra p = new Palavra();       //possivel erro
+            p.setPalavraDigitada(palavra);   //possivel erro
+            p.setCategoria(categoria);       //possivel erro
             lista.add(p);
         }
-        cursor.close(); //esta fechando
+        cursor.close();     //esta fechando
         db.close();
         return lista;
     }

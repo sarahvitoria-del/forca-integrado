@@ -34,8 +34,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         b = findViewById(R.id.button);
         b.setOnClickListener(this);
 
-        b = findViewById(R.id.button2);
-        b.setOnClickListener(this);
+        b1 = findViewById(R.id.button2);
+        b1.setOnClickListener(this);
     }
     //____________________________________↓METODO onClick↓_______________________________________________________________________________________________________________________________
 
