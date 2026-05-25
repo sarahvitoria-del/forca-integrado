@@ -90,7 +90,7 @@ public class Tela3 extends AppCompatActivity implements View.OnClickListener, Ra
 
     }
 
-    //_________________________________________↓METODO RADIO GRUPO (onCheckedChanged)↓________________________________________________________________________________________________________
+    /*_________________________________________↓METODO RADIO GRUPO (onCheckedChanged)↓________________________________________________________________________________________________________*/
 
     @Override    //RadioGroup --> nome da classe ↓
     public void onCheckedChanged(@NonNull RadioGroup radioGroup, int i) {  //i o prorio radio button que foi clicado
