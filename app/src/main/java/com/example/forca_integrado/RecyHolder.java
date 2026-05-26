@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class RecyHolder extends RecyclerView.ViewHolder {
-    private TextView txPalavra, txCategroia;
+    protected TextView txPalavra, txCategroia;
 
     public RecyHolder(@NonNull View itemView) {
         super(itemView);

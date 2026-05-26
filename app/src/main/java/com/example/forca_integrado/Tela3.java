@@ -1,5 +1,6 @@
 package com.example.forca_integrado;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -72,19 +73,22 @@ public class Tela3 extends AppCompatActivity implements View.OnClickListener, Ra
                 temRadioChecado = true;                //se um dos 5 tiver selecionado ==> boolean muda para true
 
             }else{
-                Toast.makeText(this, "Marque uma categoria para continuar.", Toast.LENGTH_SHORT).show(); //senao tem caixinha selecionada ==> joga esse aviso para o usuario
+                Toast.makeText(this, "Marque uma categoria para continuar.", Toast.LENGTH_SHORT).show(); //senao, tem caixinha selecionada! ==> joga esse aviso para o usuario
             }
             if (temTextoDigitado && temRadioChecado){
                 //aqui pode salvar no BD
                 Palavra palavra1 = new Palavra();
                 palavra1.setPalavraDigitada(texto);
                 bd.salvarPalavra(palavra1);
+                textoDaPalavra.setText("");
+                Toast.makeText(this,"Salvo", Toast.LENGTH_SHORT).show();
             }
             //**************************************************************
 
         }
 
         if (view == btnListar){
+            startActivity(new Intent(this, TelaRecycler.class));
 
         }
 

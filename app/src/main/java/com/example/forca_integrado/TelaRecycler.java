@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class TelaRecycler extends AppCompatActivity {
     private RecyclerView recyclerView;
+    private BD bd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +27,14 @@ public class TelaRecycler extends AppCompatActivity {
         });
         //---------------------------------------------------------------------------------------------------------------------------------
 
+        bd = new BD(TelaRecycler.this);
+        Adaptador adaptador = new Adaptador(bd.listarPalavra());       //estancio o adaptador e pego uma lista de palavra que esta vindo do proprio banco de dados➣
+
         recyclerView = findViewById(R.id.id_recycler);   //espelhamos um RecycçerView
         RecyclerView.LayoutManager maneger = new LinearLayoutManager(this); //Fizemos um meneger de como os dados vao ser organizador
         recyclerView.setLayoutManager(maneger);
         recyclerView.setHasFixedSize(true);
+
+        recyclerView.setAdapter(adaptador);  //➣mando a lista vde palavras pegas do banco de dados e mando para o adaptador
     }
 }
