@@ -20,7 +20,7 @@ public class Tela3 extends AppCompatActivity implements View.OnClickListener, Ra
           //TELA DE CADASTRO DE PALAVRAS
     private EditText textoDaPalavra;
     private Button btnCadastra, btnListar;
-    private String categoriaSelecionada, palavra;
+    private String categoriaSelecionada, palavra, nivel;
     private RadioGroup grupo;
     private BD bd;
 
@@ -39,7 +39,7 @@ public class Tela3 extends AppCompatActivity implements View.OnClickListener, Ra
             return insets;
         });
         bd = new BD(Tela3.this);
-        textoDaPalavra = findViewById(R.id.textPalavra);
+        textoDaPalavra = findViewById(R.id.txPalavra);
         btnCadastra = findViewById(R.id.button4);
         btnCadastra.setOnClickListener(this);
         btnListar = findViewById(R.id.button6);
@@ -52,6 +52,19 @@ public class Tela3 extends AppCompatActivity implements View.OnClickListener, Ra
     public void onClick(View view) {
         if (view == btnCadastra){
             String texto = textoDaPalavra.getText().toString();  //cata o texto
+            int conta = texto.length();  //.length() ==> ele pega a palavra e conta quantos caracter ela possui
+            if(conta <= 4){
+                nivel = "FACIL";
+            }
+            else if (conta > 4 && conta <=7){
+                nivel = "MEDIO";
+            }
+            else{
+                nivel = "DIFICIL";
+            }
+            /*_____________________________________*/
+
+
 
             boolean temTextoDigitado = false;   //boolean temTextoDigitado --> começa como false
             if (texto.isEmpty()){     //isEmpty --> verifica se o usuario digitou uma palavra na caixinha

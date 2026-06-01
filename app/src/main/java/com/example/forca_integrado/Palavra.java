@@ -4,7 +4,7 @@ package com.example.forca_integrado;
 
 public class Palavra {
     //declarei as variaveis
-    private String palavraDigitada, categoria;
+    private String categoria, palavraDigitada, dica, nivel;
     //____________________________________↓METODO getter de palavraDigitada↓_______________________________________________________________________________________________________________________________
 
     public String getPalavraDigitada() { //
@@ -24,5 +24,21 @@ public class Palavra {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
+    }
+
+    public String getDica() {
+        return dica;
+    }
+
+    public void setDica(String dica) {
+        this.dica = dica;
+    }
+
+    public String getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(String nivel) {
+        this.nivel = nivel;
     }
 }
