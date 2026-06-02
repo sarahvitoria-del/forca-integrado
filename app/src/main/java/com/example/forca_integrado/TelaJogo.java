@@ -1,4 +1,6 @@
 package com.example.forca_integrado;
+import static android.view.View.VISIBLE;
+
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -7,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class TelaJogo extends AppCompatActivity implements View.OnClickListener  {
-    private Button b1;
+    private Button b1, btDica;
 
     private ImageView imagem;
 
@@ -57,6 +60,7 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
 
         //imagens do bonequinho da forca
         imagem = findViewById(R.id.imageView2);
+        btDica = findViewById(R.id.btDica);
         txAcerto =findViewById(R.id.txAcerto);
         txErro = findViewById(R.id.textView4);
         contaAcerto = 0;
@@ -216,6 +220,15 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
         if (!status){           //verifica se erro --> se errou... <--
             atualizaForca();
             contaErro++;
+            if(contaErro>= 2){
+                btDica.setVisibility(VISIBLE);
+                btDica.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(TelaJogo.this, "DICA", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
             txErro.setText(Integer.toString(contaErro)+"/"+Integer.toString(listaImagens.size()));       //valor dos --> erros <--- sendo exibida
         }
         else {                //--> se não errou... <-- ou seja, acertou.
@@ -228,7 +241,7 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
         }//________________________________________↓ METODO ATUALIZA TEXTO ↓___________________________________________________________________________________________________________________________
 
 
-    // explicação do metodo: palavra sorteada tem 4 palavras por ex, entao tera 4 '_'
+    // explicação do metodo: palavra sorteada tem 4 letras, por ex, entao tera 4 '_'
     //adiciona o espaço entre os '_'
     public void atualizaTexto(){
         String temporaria = new String();
