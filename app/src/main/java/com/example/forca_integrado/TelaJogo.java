@@ -34,10 +34,12 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
 
     private TextView texto, txAcerto, txErro;
 
-    private String palavra; //String --> aspas dupla
+    private String palavra, nivelAtual; //String --> aspas dupla
 
     private char[] estado;
     //ajudar a monitoriar o jogo --> monitoriar qual letra ja foi descoberta <--
+    private int vitoria;
+    private BD bd;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -54,6 +56,8 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        nivelAtual = "FACIL";
+        bd = new BD(this);
 
         imagem = findViewById(R.id.imageView2);
         indiceListaImagens = -1;
@@ -137,14 +141,39 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
             b.setOnClickListener(this);
         }
 
-        inicializaJogo();
+        inicializaJogo(nivelAtual);
 
     } //_________________________________↓ FIM DO METODO onCreate ↓____________________________________________________________________________________________________________
 
 
 
     //iniciazar o jogo novamente depois de uma partida
-    public void inicializaJogo() {
+    public void inicializaJogo(String nivel) {
+        ArrayList<Palavra> lista = new ArrayList<>();
+        indiceListaImagens = 0;
+        if(nivel.compareToIgnoreCase("FACIL")==0){
+            lista = bd.ListarPalavrasFacil();
+            Collections.shuffle(lista);
+            palavra = lista.get(indiceListaImagens).getPalavraDigitada();
+        }
+
+        ArrayList<Palavra> listaMedio = new ArrayList<>();
+        indiceListaImagens =0;
+        if(nivel.compareToIgnoreCase("MEDIO")==0){
+            listaMedio = bd.ListarPalavrasFacil();
+            Collections.shuffle(listaMedio);
+            palavra = listaMedio.get(indiceListaImagens).getPalavraDigitada();
+        }
+
+        ArrayList<Palavra> listaDificil = new ArrayList<>();
+        indiceListaImagens =0;
+        if(nivel.compareToIgnoreCase("DIFICIL")==0){
+            listaDificil = bd.ListarPalavrasFacil();
+            Collections.shuffle(listaDificil);
+            palavra = listaDificil.get(indiceListaImagens).getPalavraDigitada();
+        }
+
+
         imagem.setImageResource(R.drawable.forca_0_9);                //chamar a imagem
         indiceListaImagens = 0;
         palavra = sorteiaPalavra();                                   //sortear a palavra
@@ -174,7 +203,8 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
         //se o verifica estiver false significa que o usuario ganhou
 
 
-           if (!verifica){                                                                          //variavel boolean verifica - false e true =====>> if(verifica==true) => if(verifica) (igual)
+           if (!verifica){//variavel boolean verifica - false e true =====>> if(verifica==true) => if(verifica) (igual)
+               NivelVitoria();
                AlertDialog.Builder caixa = new AlertDialog.Builder(this);
                caixa.setTitle("Você Venceu!");
                caixa.setMessage("Deseja jogar novamente?");
@@ -182,7 +212,8 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
 
                    @Override
                    public void onClick(DialogInterface dialogInterface, int i) {
-                       inicializaJogo();
+                       vitoria++;
+                       NivelVitoria();
                    }
                });
                caixa.show();
@@ -197,7 +228,7 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
 
                    @Override
                    public void onClick(DialogInterface dialogInterface, int i) {
-                       inicializaJogo();
+                       NivelVitoria();
                    }
                });
                caixa.show();
@@ -206,8 +237,22 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
 
 
     }//__________________________________________↓ METODO VETIFICA LETRA ↓_________________________________________________________________________________________________________________________
+    //voltar dps
+    public void NivelVitoria(){
+        if(vitoria<=3){
+            nivelAtual = "FACIL";
+        }
 
+        if(vitoria>=4 && vitoria <=6){
+            nivelAtual = "MEDIO";
+        }
 
+        else if(vitoria >6){
+            nivelAtual = "DIFICIL";
+
+        }
+        inicializaJogo(nivelAtual);
+    }
       //verifica se a letra esta na palavra
         public void verificaLetra(char c){
         boolean status = false;                           //começa falso

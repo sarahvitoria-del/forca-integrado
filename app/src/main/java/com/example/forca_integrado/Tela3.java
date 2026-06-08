@@ -15,7 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-                                                                               //↓especifico para criar um metodo para Radio Group
+
+import java.util.ArrayList;
+
+//↓especifico para criar um metodo para Radio Group
 public class Tela3 extends AppCompatActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
           //TELA DE CADASTRO DE PALAVRAS
     private EditText textoDaPalavra, textoDaDica;
@@ -23,6 +26,7 @@ public class Tela3 extends AppCompatActivity implements View.OnClickListener, Ra
     private String categoriaSelecionada, palavra, nivel;
     private RadioGroup grupo;
     private BD bd;
+    private ArrayList<String> ListaFacil, L, ListaMedio, ListaDificul;
 
 
 
@@ -115,6 +119,32 @@ public class Tela3 extends AppCompatActivity implements View.OnClickListener, Ra
 
         if (view == btnListar){
             startActivity(new Intent(this, TelaRecycler.class));
+
+            //__________________________parte 6___________________--
+            ArrayList<Palavra>L = new ArrayList<Palavra>();
+            ArrayList<Palavra>ListarFacil = new ArrayList<Palavra>();
+            L = bd.listarPalavra();
+            for (int i = 0; i<L.size(); i++){
+                if(L.get(i).getNivel().compareToIgnoreCase("FACIL")==0){
+                    ListarFacil.add(L.get(i));
+                }
+            }
+
+            ArrayList<Palavra>ListarMedio = new ArrayList<Palavra>();
+            L = bd.listarPalavra();
+            for (int i = 0; i<L.size(); i++){
+                if(L.get(i).getNivel().compareToIgnoreCase("MEDIO")==0){
+                    ListarMedio.add(L.get(i));
+                }
+            }
+
+            ArrayList<Palavra>ListarDificil = new ArrayList<Palavra>();
+            L = bd.listarPalavra();
+            for (int i = 0; i<L.size(); i++){
+                if(L.get(i).getNivel().compareToIgnoreCase("FACIL")==0){
+                    ListarDificil.add(L.get(i));
+                }
+            }
 
         }
 

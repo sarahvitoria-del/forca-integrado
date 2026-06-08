@@ -55,6 +55,47 @@ public class BD extends SQLiteOpenHelper {
         return lista;
     }
 
+    public ArrayList<Palavra>ListarPalavrasFacil(){
+        ArrayList<Palavra> listaGeral = new ArrayList<Palavra>();
+        ArrayList<Palavra> lista = new ArrayList<Palavra>();
+        listaGeral = listarPalavra();
+
+        for (int i = 0; i<lista.size(); i++){
+            if(listaGeral.get(i).getNivel().compareToIgnoreCase("FACIL")==0){
+                lista.add(listaGeral.get(i));
+            }
+        }
+        return listaGeral;
+    }
+
+    public ArrayList<Palavra>ListarPalavrasMedio(){
+        ArrayList<Palavra> listaGeral = new ArrayList<Palavra>();
+        ArrayList<Palavra> listaMedio = new ArrayList<Palavra>();
+        listaGeral = listarPalavra();
+
+        for (int i = 0; i<listaMedio.size(); i++){
+            if(listaGeral.get(i).getNivel().compareToIgnoreCase("MEDIO")==0){
+                listaMedio.add(listaGeral.get(i));
+            }
+        }
+        return listaGeral;
+    }
+
+    public ArrayList<Palavra>ListarPalavrasDificil(){
+        ArrayList<Palavra> listaGeral = new ArrayList<Palavra>();
+        ArrayList<Palavra> listaDificil = new ArrayList<Palavra>();
+        listaGeral = listarPalavra();
+
+        for (int i = 0; i<listaDificil.size(); i++){
+            if(listaGeral.get(i).getNivel().compareToIgnoreCase("DIFICIL")==0){
+                listaDificil.add(listaGeral.get(i));
+            }
+        }
+        return listaGeral;
+    }
+
+
+
     //____________________________________↓METODO salvar palavra↓________________________________________________________________________________________________________________________________________________
 
     public void salvarPalavra(Palavra p){
