@@ -34,7 +34,7 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
 
     private TextView texto, txAcerto, txErro;
 
-    private String palavra, nivelAtual; //String --> aspas dupla
+    private String palavra, nivelAtual, dica; //String --> aspas dupla
 
     private char[] estado;
     //ajudar a monitoriar o jogo --> monitoriar qual letra ja foi descoberta <--
@@ -70,6 +70,7 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
         contaAcerto = 0;
         contaErro = 0;
         indiceListaImagens = 0;
+        dica = "";
         listaImagens= new ArrayList<Integer>();
         listaImagens.add(R.drawable.forca_1_9);
         listaImagens.add(R.drawable.forca_2_9);
@@ -155,6 +156,7 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
             lista = bd.ListarPalavrasFacil();
             Collections.shuffle(lista);
             palavra = lista.get(indiceListaImagens).getPalavraDigitada();
+            dica = lista.get(indiceListaImagens).getDica();
         }
 
         ArrayList<Palavra> listaMedio = new ArrayList<>();
@@ -163,6 +165,7 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
             listaMedio = bd.ListarPalavrasFacil();
             Collections.shuffle(listaMedio);
             palavra = listaMedio.get(indiceListaImagens).getPalavraDigitada();
+            dica = listaMedio.get(indiceListaImagens).getDica();
         }
 
         ArrayList<Palavra> listaDificil = new ArrayList<>();
@@ -171,6 +174,7 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
             listaDificil = bd.ListarPalavrasFacil();
             Collections.shuffle(listaDificil);
             palavra = listaDificil.get(indiceListaImagens).getPalavraDigitada();
+            dica = listaDificil.get(indiceListaImagens).getDica();
         }
 
 
@@ -270,7 +274,7 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
                 btDica.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(TelaJogo.this, "DICA", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TelaJogo.this, dica, Toast.LENGTH_SHORT).show();
                     }
                 });
             }

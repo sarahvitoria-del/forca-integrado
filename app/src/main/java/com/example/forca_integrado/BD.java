@@ -22,7 +22,7 @@ public class BD extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(
                 "CREATE TABLE IF NOT EXISTS tabelaPalavra("+                         //contatenando = quebrando linha. '+' --> somando o conteudo das proximas linhas --> abre parentese para fechar depois la em baixo
-                 "_id INTERGER PRIMARY KEY AUTOINCREMENT,"+
+                 "_id INTEGER PRIMARY KEY AUTOINCREMENT,"+
                         "palavra TEXT,"+
                         "categoria TEXT,"+
                         "dica TEXT,"+
@@ -38,10 +38,10 @@ public class BD extends SQLiteOpenHelper {
         Cursor cursor = db.query("tabelaPalavra", null, null, null, null, null, null);
         while (cursor.moveToNext()){ //enquanto ele poder mover para o procimo o while vai ficar rodando
 
-             palavra = cursor.getString(cursor.getColumnIndexOrThrow("palavra"));
+             palavra = cursor.getString(cursor.getColumnIndexOrThrow("palavra")).toUpperCase();
              categoria = cursor.getString(cursor.getColumnIndexOrThrow("categoria"));
              dica = cursor.getString(cursor.getColumnIndexOrThrow("dica"));
-             nivel = cursor.getString(cursor.getColumnIndexOrThrow(nivel));
+             nivel = cursor.getString(cursor.getColumnIndexOrThrow("nivel"));
 
             Palavra p = new Palavra();       //possivel erro
             p.setPalavraDigitada(palavra);   //possivel erro
