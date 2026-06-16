@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class BD extends SQLiteOpenHelper {
     private String palavra, categoria, dica, nivel;
     private static final int DATABASE_VERSION = 1;  //estou declarando a versao do meu database que sera 1
-    private static final String DATABASE_NAME = "banco1.bd"; //Estou declarando que o nome do meu banco de dados se chama "banco.db"
+    private static final String DATABASE_NAME = "banco20.bd"; //Estou declarando que o nome do meu banco de dados se chama "banco.db"
 
     public BD(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

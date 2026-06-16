@@ -103,9 +103,9 @@ public class Tela3 extends AppCompatActivity implements View.OnClickListener, Ra
                 //aqui pode salvar no BD
                 Palavra palavra1 = new Palavra();
                 palavra1.setPalavraDigitada(texto);
-                palavra1.setDica(texto);
-                palavra1.setCategoria(texto);
-                palavra1.setNivel(texto);
+                palavra1.setDica(dica);
+                palavra1.setCategoria(categoriaSelecionada);
+                palavra1.setNivel(nivel);
 
                 bd.salvarPalavra(palavra1);
                 textoDaPalavra.setText("");

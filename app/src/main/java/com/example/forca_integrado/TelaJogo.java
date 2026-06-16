@@ -29,8 +29,9 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
     //lista de inteiros (imagens == numero)
 
     private ArrayList <String> listaPalavras;
+    private ArrayList <Palavra> lista, listaMedio, listaDificil;
 
-    private int indiceListaImagens, contaAcerto, contaErro;
+    private int indiceListaImagens, contaAcerto, contaErro, indiceLista;
 
     private TextView texto, txAcerto, txErro;
 
@@ -60,7 +61,7 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
         bd = new BD(this);
 
         imagem = findViewById(R.id.imageView2);
-        indiceListaImagens = -1;
+
 
         //imagens do bonequinho da forca
         imagem = findViewById(R.id.imageView2);
@@ -70,6 +71,8 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
         contaAcerto = 0;
         contaErro = 0;
         indiceListaImagens = 0;
+        indiceLista = 0;
+
         dica = "";
         listaImagens= new ArrayList<Integer>();
         listaImagens.add(R.drawable.forca_1_9);
@@ -86,21 +89,6 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
 
         //palavras que sera sorteadas
         listaPalavras = new ArrayList<String>();
-        listaPalavras.add("QUIMICA");
-        listaPalavras.add("PARALELEPIPEDO");
-        listaPalavras.add("CARRO");
-        listaPalavras.add("BANANA");
-        listaPalavras.add("MUNICIPIO");
-        listaPalavras.add("TECLADO");
-        listaPalavras.add("DRAGAO");
-        listaPalavras.add("MACARRAO");
-        listaPalavras.add("CELULAR");
-        listaPalavras.add("MESA");
-        listaPalavras.add("MATEMATICA");
-        listaPalavras.add("OCEANO");
-        listaPalavras.add("NEBULOSA");
-        listaPalavras.add("ASTRONALTA");
-        listaPalavras.add("GALAXIA");
 
 
         //serve para conectar um componente visual (widget) definido no arquivo XML de layout a uma variável no código Java
@@ -150,37 +138,37 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
 
     //iniciazar o jogo novamente depois de uma partida
     public void inicializaJogo(String nivel) {
-        ArrayList<Palavra> lista = new ArrayList<>();
+
+         lista = new ArrayList<>();
         indiceListaImagens = 0;
         if(nivel.compareToIgnoreCase("FACIL")==0){
             lista = bd.ListarPalavrasFacil();
             Collections.shuffle(lista);
-            palavra = lista.get(indiceListaImagens).getPalavraDigitada();
-            dica = lista.get(indiceListaImagens).getDica();
+            palavra = lista.get(indiceLista).getPalavraDigitada();
+            dica = lista.get(indiceLista).getDica();
         }
 
-        ArrayList<Palavra> listaMedio = new ArrayList<>();
-        indiceListaImagens =0;
+        listaMedio = new ArrayList<>();
+
         if(nivel.compareToIgnoreCase("MEDIO")==0){
             listaMedio = bd.ListarPalavrasFacil();
             Collections.shuffle(listaMedio);
-            palavra = listaMedio.get(indiceListaImagens).getPalavraDigitada();
-            dica = listaMedio.get(indiceListaImagens).getDica();
+            palavra = listaMedio.get(indiceLista).getPalavraDigitada();
+            dica = listaMedio.get(indiceLista).getDica();
         }
 
-        ArrayList<Palavra> listaDificil = new ArrayList<>();
-        indiceListaImagens =0;
+        listaDificil = new ArrayList<>();
+
         if(nivel.compareToIgnoreCase("DIFICIL")==0){
             listaDificil = bd.ListarPalavrasFacil();
             Collections.shuffle(listaDificil);
-            palavra = listaDificil.get(indiceListaImagens).getPalavraDigitada();
-            dica = listaDificil.get(indiceListaImagens).getDica();
+            palavra = listaDificil.get(indiceLista).getPalavraDigitada();
+            dica = listaDificil.get(indiceLista).getDica();
         }
 
 
         imagem.setImageResource(R.drawable.forca_0_9);                //chamar a imagem
-        indiceListaImagens = 0;
-        palavra = sorteiaPalavra();                                   //sortear a palavra
+
         estado = new char[palavra.length()];                          //chamar o estado
         for(int i=0; i<estado.length; i++){                           //interação
             estado[i] = '_';                                          //char: aspas simples
@@ -217,6 +205,7 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
                    @Override
                    public void onClick(DialogInterface dialogInterface, int i) {
                        vitoria++;
+                       indiceLista++;
                        NivelVitoria();
                    }
                });
@@ -274,6 +263,7 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
                 btDica.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+
                         Toast.makeText(TelaJogo.this, dica, Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -296,7 +286,7 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
         String temporaria = new String();
         temporaria="";
         for (int i = 0; i<estado.length; i++){
-            temporaria+= estado[i] + "";
+            temporaria+= estado[i] + " ";
         }
         texto.setText(temporaria);
     }//_______________________________________________↓METODO SORTEIA PALAVRAS↓____________________________________________________________________________________________________________________
