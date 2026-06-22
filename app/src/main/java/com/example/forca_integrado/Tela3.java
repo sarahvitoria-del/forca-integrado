@@ -88,11 +88,13 @@ public class Tela3 extends AppCompatActivity implements View.OnClickListener, Ra
             RadioButton r1 = findViewById(R.id.radioButton);                                                      //pais
             RadioButton r2= findViewById(R.id.radioButton2);                                                      //estado
             RadioButton r3 = findViewById(R.id.radioButton3);                                                     //cidade
-            RadioButton r4 = findViewById(R.id.radioButton5);                                                     //alimento
+            RadioButton r4 = findViewById(R.id.radioButton5);
+            RadioButton r5 = findViewById(R.id.radioButton7);
+            RadioButton r6 = findViewById(R.id.radioButton6);
 
             //**************************************************************
             boolean temRadioChecado = false; //<--boolean começa false
-            if (r.isChecked() || r1.isChecked() || r2.isChecked() || r3.isChecked() || r4.isChecked()){
+            if (r.isChecked() || r1.isChecked() || r2.isChecked() || r3.isChecked() || r4.isChecked() || r5.isChecked() || r6.isChecked()){
                 temRadioChecado = true;                //se um dos 5 tiver selecionado ==> boolean muda para true
 
             }else{

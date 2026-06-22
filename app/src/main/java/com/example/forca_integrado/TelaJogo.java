@@ -41,6 +41,7 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
     //ajudar a monitoriar o jogo --> monitoriar qual letra ja foi descoberta <--
     private int vitoria;
     private BD bd;
+    private TextView categoria, inivel, ponto;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -68,6 +69,9 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
         btDica = findViewById(R.id.btDica);
         txAcerto =findViewById(R.id.txAcerto);
         txErro = findViewById(R.id.textView4);
+        ponto = findViewById(R.id.ponts);
+        categoria = findViewById(R.id.categ);
+        inivel = findViewById(R.id.niv);
         contaAcerto = 0;
         contaErro = 0;
         indiceListaImagens = 0;
@@ -146,6 +150,9 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
             Collections.shuffle(lista);
             palavra = lista.get(indiceLista).getPalavraDigitada();
             dica = lista.get(indiceLista).getDica();
+            categoria.setText(lista.get(indiceListaImagens).getCategoria());
+            inivel.setText(lista.get(indiceListaImagens).getNivel());
+
         }
 
         listaMedio = new ArrayList<>();
@@ -155,6 +162,8 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
             Collections.shuffle(listaMedio);
             palavra = listaMedio.get(indiceLista).getPalavraDigitada();
             dica = listaMedio.get(indiceLista).getDica();
+            categoria.setText(listaMedio.get(indiceListaImagens).getCategoria());
+            inivel.setText(listaMedio.get(indiceListaImagens).getNivel());
         }
 
         listaDificil = new ArrayList<>();
@@ -164,6 +173,8 @@ public class TelaJogo extends AppCompatActivity implements View.OnClickListener 
             Collections.shuffle(listaDificil);
             palavra = listaDificil.get(indiceLista).getPalavraDigitada();
             dica = listaDificil.get(indiceLista).getDica();
+            categoria.setText(listaDificil.get(indiceListaImagens).getCategoria());
+            inivel.setText(listaDificil.get(indiceListaImagens).getNivel());
         }
 
 
